@@ -1,0 +1,10 @@
+---
+- name: Apply tf config 
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Apply tf config
+      cloud.terraform.terraform:
+        project_path: "./"
+        state: present
+        force_init: true
