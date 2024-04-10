@@ -1,0 +1,17 @@
+---
+- name: Plan and Stash
+  hosts: localhost
+  tasks:
+    - name: Load the terraform plan file from variable into file
+      cloud.terraform.plan_stash:
+        path: "terraform/demo.tfplan"
+        state: load
+        var_name: "demo_plan_var"
+        no_log: true
+
+    - name: Terraform plan
+      cloud.terraform.terraform:
+        project_path: terraform/
+        plan_file: terraform/demo.tfplan
+        force_init: true
+        state: present

@@ -1,0 +1,21 @@
+---
+- name: Plan and Stash
+  hosts: localhost
+  tasks:
+    - name: Terraform plan
+      cloud.terraform.terraform:
+        project_path: terraform/
+        plan_file: terraform/demo.tfplan
+        force_init: true
+        state: planned
+        backend_config_files:
+          - "{{ lookup('env', 'TF_BACKEND_CONFIG_FILE') }}"
+
+    - name: Encode terraform plan file into a variable demo_plan_var
+      cloud.terraform.plan_stash:
+      path: "terraform/demo.tfplan
+      state: stash
+      var_name: "demo_plan_var"
+      no_log: true
+
+    
