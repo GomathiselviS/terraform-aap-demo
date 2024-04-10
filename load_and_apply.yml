@@ -4,14 +4,19 @@
   tasks:
     - name: Load the terraform plan file from variable into file
       cloud.terraform.plan_stash:
-        path: "terraform/demo.tfplan"
+        path: terraform/terraform.tfplan
         state: load
         var_name: "demo_plan_var"
-        no_log: true
+      no_log: true
 
-    - name: Terraform plan
+    - name: Terraform apply
       cloud.terraform.terraform:
         project_path: terraform/
-        plan_file: terraform/demo.tfplan
+        plan_file: ./terraform.tfplan
         force_init: true
         state: present
+        backend_config_files:
+          - "{{ lookup('env', 'TF_BACKEND_CONFIG_FILE') }}"
+        variables:
+          gcp_credentials_path: "{{ lookup('env', 'GCE_CREDENTIALS_FILE_PATH') }}"
+          gcp_project: "{{ lookup('env', 'GCE_PROJECT') }}"
