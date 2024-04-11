@@ -24,11 +24,11 @@ resource "aws_instance" "tf-demo-aws-ec2-instance-a" {
   }
 }
 
-variable "gcp_credentials_path" { type= string }
+variable "gcp_credentials" { type= string }
 variable "gcp_project" { type= string }
 
 provider "google" {
-  credentials = var.gcp_credentials_path
+  credentials = var.gcp_credentials
   project = var.gcp_project
   region = "northamerica-northeast1"
 }
