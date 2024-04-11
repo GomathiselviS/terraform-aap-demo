@@ -7,7 +7,7 @@
         path: terraform/terraform.tfplan
         state: load
         var_name: "demo_plan_var"
-      no_log: true
+      #no_log: true
 
     - name: Terraform apply
       cloud.terraform.terraform:
