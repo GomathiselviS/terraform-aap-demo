@@ -18,7 +18,8 @@ provider "aws" {
 
 resource "aws_instance" "tf-demo-aws-ec2-instance-a" {
   ami           = "ami-00868b88dcd97faed"
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
+  ebs_optimized = true
   tags = {
     Name = "tf-demo-aws-ec2-instance-a"
   }

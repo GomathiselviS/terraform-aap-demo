@@ -1,0 +1,47 @@
+---
+# Variables for create.yaml
+resource_prefix: "ansible-test"
+region: us-east-1
+vpc_name: "{{ resource_prefix }}-vpc"
+vpc_cidr: 10.1.0.0/16
+subnet_cidr:
+  - 172.31.0.0/20
+  - 172.31.16.0/20
+  - 172.31.32.0/20
+resource_tags:
+  prefix: "{{ resource_prefix }}"
+operation: create
+
+public_secgroup_name: "{{ resource_prefix }}-sg"
+ec2_iam_role_name: "{{ resource_prefix }}-role"
+rds_subnet_group_name: "{{ resource_prefix }}-rds-sg"
+rds_secgroup_name: "{{ resource_prefix }}-rds-sec"
+rds_identifier: "{{ resource_prefix }}-rds-01"
+rds_allocated_storage_gb: 20
+rds_instance_class: db.m6g.large
+rds_instance_name: mysampledb123
+rds_engine: postgres
+rds_engine_version: "14.8"
+bastion_host_type: t2.micro
+bastion_host_venv_path: ~/env
+rds_listening_port: 5432
+
+# Variables for the deploy_flask_app role
+deploy_flask_app_sshkey_pair_name: "{{ resource_prefix }}-key"
+deploy_flask_app_bastion_host_name: "tf-demo-aws-ec2-instance-a"
+deploy_flask_app_bastion_host_username: ec2-user
+deploy_flask_app_workers_instance_type: t2.micro
+deploy_flask_app_workers_user_name: ec2-user
+deploy_flask_app_number_of_workers: 2
+deploy_flask_app_listening_port: 5000
+deploy_flask_app_config:
+  env: development
+  admin_user: admin
+  admin_password: admin
+  app_dir: /app/pyapp
+deploy_flask_app_force_init: false
+deploy_flask_app_rds_master_password: L#5cH2mgy_
+deploy_flask_app_rds_master_username: ansible
+
+# A bucket to save RSA key into
+bucket_name: "bucket-rsa-{{ resource_prefix }}"

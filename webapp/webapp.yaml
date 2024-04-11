@@ -1,0 +1,34 @@
+---
+- name: Webapp
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars/main.yaml
+
+  tasks:
+    - name: Fail when 'resource_prefix' is not defined
+      ansible.builtin.fail:
+        msg: resource prefix should be defined as resource_prefix
+      when: resource_prefix is not defined
+
+    - name: Run operation create/delete
+      ansible.builtin.import_tasks: tasks/{{ operation }}.yaml
+
+    - name: Create workers and deploy application
+      when: operation == "create"
+      module_defaults:
+        group/aws:
+          aws_access_key: "{{ aws_access_key | default(omit) }}"
+          aws_secret_key: "{{ aws_secret_key | default(omit) }}"
+          security_token: "{{ security_token | default(omit) }}"
+          region: "{{ region | default(aws_region) }}"
+      block:
+        - name: Deploy app
+          ansible.builtin.include_role:
+            name: cloud.aws_ops.deploy_flask_app
+          vars:
+            deploy_flask_app_private_subnet_id: "{{ private_subnet.subnet.id }}"
+            deploy_flask_app_vpc_id: "{{ vpc.vpcs[0].id }}"
+            deploy_flask_app_bastion_instance_id: "{{ vm_result.instance_ids.0 }}"
+            deploy_flask_app_rds_host: "{{ rds_result.instances.0.endpoint.address }}"
+            deploy_flask_app_rds_dbname: "{{ rds_result.instances.0.db_name }}"
