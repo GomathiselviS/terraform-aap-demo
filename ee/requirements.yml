@@ -2,6 +2,9 @@
 collections:
   - name: amazon.aws
   - name: google.cloud
+  - name: cloud.aws_ops
+    source: https://github.com/redhat-cop/cloud.aws_ops.git
+    type: git
   - name: cloud.terraform
     source: https://github.com/ansible-collections/cloud.terraform.git
     type: git

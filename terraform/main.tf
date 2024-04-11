@@ -28,7 +28,6 @@ variable "gcp_credentials" { type= string }
 variable "gcp_project" { type= string }
 
 provider "google" {
-  credentials = "${file(var.gcp_credentials)}"
   project = var.gcp_project
   region = "northamerica-northeast1"
 }
