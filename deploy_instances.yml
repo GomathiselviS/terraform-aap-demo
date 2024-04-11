@@ -9,3 +9,6 @@
         force_init: true
         backend_config_files:
           - "{{ lookup('env', 'TF_BACKEND_CONFIG_FILE') }}"
+        variables:
+          gcp_credentials_path: "{{ lookup('env', 'GCE_CREDENTIALS_FILE_PATH') }}"
+          gcp_project: "{{ lookup('env', 'GCE_PROJECT') }}"

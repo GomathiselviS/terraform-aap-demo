@@ -26,7 +26,6 @@ resource "aws_instance" "tf-demo-aws-ec2-instance-a" {
 
 variable "gcp_credentials" {
   type= string
-  sensitive   = true
 }
 variable "gcp_project" { type= string }
 
