@@ -22,7 +22,7 @@ variable "key_pair" {
 }
 
 resource "local_sensitive_file" "id_rsa" {
-  content  = ${key_pair}
+  content  = var.key_pair
   filename = ".ansible-test_id_rsa"
 }
 
