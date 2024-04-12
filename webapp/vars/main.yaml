@@ -5,16 +5,16 @@ region: us-east-1
 vpc_name: "{{ resource_prefix }}-vpc"
 vpc_cidr: 10.1.0.0/16
 subnet_cidr:
-  - 172.31.0.0/20
-  - 172.31.16.0/20
-  - 172.31.32.0/20
+  - 10.1.0.0/24
+  - 10.1.1.0/24
+  - 10.1.2.0/24
 resource_tags:
   prefix: "{{ resource_prefix }}"
 operation: create
 
 public_secgroup_name: "{{ resource_prefix }}-sg"
 ec2_iam_role_name: "{{ resource_prefix }}-role"
-rds_subnet_group_name: "{{ resource_prefix }}-rds-sg"
+rds_subnet_group_name: "{{ resource_prefix }}-tf-rds-sg"
 rds_secgroup_name: "{{ resource_prefix }}-rds-sec"
 rds_identifier: "{{ resource_prefix }}-rds-01"
 rds_allocated_storage_gb: 20

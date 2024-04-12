@@ -34,8 +34,8 @@
     - name: Create private subnet for workers
       amazon.aws.ec2_vpc_subnet:
         vpc_id: "{{ vpc.vpcs[0].id }}"
-        cidr: "{{ subnet_cidr[0] }}"
-        az: "{{ shared_az }}"
+        cidr: "{{ subnet_cidr[1] }}"
+        az: "us-east-1a"
       register: private_subnet
 
     - name: Create another private subnet for RDS
@@ -183,6 +183,7 @@
         content: "{{ keypair_result.key.private_key }}"
         dest: "{{ deploy_flask_app_bastion_ssh_private_key_path }}"
         mode: 0600
+      when: keypair_result is changed
 
     - name: Ensure IAM instance role exists
       amazon.aws.iam_role:
@@ -201,14 +202,8 @@
         instance_type: "{{ bastion_host_type }}"
         instance_role: "{{ role_output.iam_role.role_name }}"
         network:
-          assign_public_ip: true
           groups:
             - "{{ secgroup.group_id }}"
-        security_groups:
-          - "{{ secgroup.group_id }}"
         state: running
-        user_data: |
-          #!/bin/bash
-          yum install -y python3 python-virtualenv sshpass netcat ansible
         wait: true
       register: vm_result
