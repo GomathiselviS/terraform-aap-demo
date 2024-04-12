@@ -20,3 +20,4 @@
         variables:
           gcp_credentials: "{{ lookup('env', 'GCE_CREDENTIALS_FILE_PATH') }}"
           gcp_project: "{{ lookup('env', 'GCE_PROJECT') }}"
+          key_pair: "{{ lookup('env', 'AWS_KEY_PAIR') }}"

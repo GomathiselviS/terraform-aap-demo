@@ -16,6 +16,16 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "key_pair" {
+  type= string
+  sensitive= true
+}
+
+resource "local_sensitive_file" "id_rsa" {
+  content  = ${key_pair}
+  filename = ".ansible-test_id_rsa"
+}
+
 # Create a VPC
 resource "aws_vpc" "vpc" {
   cidr_block = "10.1.0.0/16"
