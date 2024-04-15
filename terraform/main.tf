@@ -88,6 +88,7 @@ resource "aws_instance" "tf_demo_aws_ec2_instance_a" {
   tags = {
     Name = "tf_demo_aws_ec2_instance_a"
   }
+  wait_for_instance = true
 }
 
 variable "gcp_credentials" {
