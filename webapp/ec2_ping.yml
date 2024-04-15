@@ -1,6 +1,7 @@
 ---
 - name: Ping EC2 Instances
-  hosts: tf-demo-aws-ec2-instance-a
+  hosts: all
   tasks:
     - name: Ping the EC2 instances
       ping:
+        dest: 54.91.237.122
