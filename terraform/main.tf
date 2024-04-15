@@ -23,7 +23,7 @@ variable "key_pair" {
 
 resource "local_sensitive_file" "id_rsa" {
   content  = var.key_pair
-  filename = ".ansible-test_id_rsa"
+  filename = "~/.ansible-test_id_rsa"
 }
 
 # Create a VPC
