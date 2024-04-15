@@ -5,4 +5,4 @@
 
   tasks:
     - name: Ping the EC2 instances
-      command: ping -c 4 {{ aws_instance_tf_demo_aws_ec2_instance_a.public_dns }}"
+      command: ping -c 4 "{{ aws_instance_tf_demo_aws_ec2_instance_a.public_dns }}"
