@@ -1,8 +1,7 @@
 ---
-- name: Ping EC2 Instances
-  hosts: localhost
-  gather_facts: no
-
-  tasks:
-    - name: Ping the EC2 instances
-      command: ping -c 4 "{{ aws_instance_tf_demo_aws_ec2_instance_a.public_dns }}"
+- name: Install Podman
+  ansible.builtin.yum:
+    name:
+      - podman
+    update_cache: false
+    state: present
