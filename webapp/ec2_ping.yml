@@ -6,6 +6,8 @@
   become: true
 
   tasks:
+    - name: Ping Ec2 instance
+      ansible.builtin.ping:
     - name: Install Podman
       ansible.builtin.yum:
         name:
