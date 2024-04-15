@@ -1,7 +1,14 @@
 ---
-- name: Install Podman
-  ansible.builtin.yum:
-    name:
-      - podman
-    update_cache: false
-    state: present
+- name: Run app
+  hosts: all
+  gather_facts: false
+  strategy: free
+  become: true
+
+  tasks:
+    - name: Install Podman
+      ansible.builtin.yum:
+        name:
+          - podman
+        update_cache: false
+        state: present
