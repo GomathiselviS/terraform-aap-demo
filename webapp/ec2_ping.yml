@@ -1,7 +1,9 @@
 ---
 - name: Ping EC2 Instances
-  hosts: all
+  hosts: localhost
+  gather_facts: no
+
   tasks:
     - name: Ping the EC2 instances
       ping:
-        dest: 54.91.237.122
+      delegate_to: "{{ aws_instance_tf-demo-aws-ec2-instance-a.public_dns }}"
