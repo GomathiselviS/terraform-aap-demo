@@ -76,7 +76,7 @@ resource "aws_vpc_security_group_egress_rule" "sec_egress_rule" {
   ip_protocol       = "-1" # semantically equivalent to all ports
 }
 
-resource "aws_instance" "tf-demo-aws-ec2-instance-a" {
+resource "aws_instance" "tf_demo_aws_ec2_instance_a" {
   ami           = "ami-00868b88dcd97faed"
   instance_type = "t3.micro"
   subnet_id = aws_subnet.public_subnet.id
@@ -86,7 +86,7 @@ resource "aws_instance" "tf-demo-aws-ec2-instance-a" {
   associate_public_ip_address = true
   user_data = file("install.sh")
   tags = {
-    Name = "tf-demo-aws-ec2-instance-a"
+    Name = "tf_demo_aws_ec2_instance_a"
   }
 }
 

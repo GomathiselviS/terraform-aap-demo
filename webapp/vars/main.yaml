@@ -28,7 +28,7 @@ rds_listening_port: 5432
 
 # Variables for the deploy_flask_app role
 deploy_flask_app_sshkey_pair_name: "{{ resource_prefix }}-key"
-deploy_flask_app_bastion_host_name: "tf-demo-aws-ec2-instance-a"
+deploy_flask_app_bastion_host_name: "tf_demo_aws_ec2_instance_a"
 deploy_flask_app_bastion_host_username: ec2-user
 deploy_flask_app_workers_instance_type: t2.micro
 deploy_flask_app_workers_user_name: ec2-user
