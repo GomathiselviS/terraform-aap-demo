@@ -6,6 +6,8 @@
   become: true
 
   tasks:
+    - name: Wait for system to become reachable
+      wait_for_connection:
     - name: Ping Ec2 instance
       ansible.builtin.ping:
     - name: Install Podman
