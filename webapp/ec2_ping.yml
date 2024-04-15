@@ -5,5 +5,4 @@
 
   tasks:
     - name: Ping the EC2 instances
-      ping:
-      delegate_to: "{{ aws_instance_tf-demo-aws-ec2-instance-a.public_dns }}"
+      command: ping -c 4 {{ aws_instance_tf-demo-aws-ec2-instance-a.public_dns }}"
