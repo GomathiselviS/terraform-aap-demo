@@ -1,6 +1,6 @@
 ---
 - name: Ping EC2 Instances
-  hosts: all
+  hosts: tf-demo-aws-ec2-instance-a
   tasks:
     - name: Ping the EC2 instances
       ping:
