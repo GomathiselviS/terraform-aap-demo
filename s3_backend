@@ -1,0 +1,5 @@
+bucket = "g-terraform-demo-bucket"
+key = "terraform/demo.tfstate"
+region = "us-east-1"
+access_key = "xxx"
+secret_key = "xxx"
